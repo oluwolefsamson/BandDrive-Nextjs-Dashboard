@@ -1,6 +1,8 @@
 "use client";
 
 import { BadgeCheck, Bell, CreditCard, LogOut, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 import {
   DropdownMenu,
@@ -30,6 +32,19 @@ export default function UserMenu({
 }) {
   const { isMobile } = useSidebar();
 
+  const handleLogout = () => {
+    try {
+      // Clear __NEXT_DISMISS_PRERENDER_INDICATOR cookie
+      document.cookie =
+        "__NEXT_DISMISS_PRERENDER_INDICATOR=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+      // Call signOut function (don't await it)
+      signOut({ callbackUrl: "/login" });
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -37,7 +52,7 @@ export default function UserMenu({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground rounded-full p-1 size-fit"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground size-fit rounded-full p-1"
             >
               <Avatar className="size-9 rounded-full border border-dashed">
                 <AvatarImage src={user.avatar} alt={user.name} />
@@ -86,7 +101,7 @@ export default function UserMenu({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
               <LogOut />
               Log out
             </DropdownMenuItem>
