@@ -1,8 +1,8 @@
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
-import NextAuth from "next-auth";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET, // ✅ Ensure this is set in `.env.local`
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
   },
@@ -60,6 +60,7 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-// ✅ Fix: Correct NextAuth API handling for App Router
+// ✅ Use `export default` for App Router in Next.js 13+
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
+export default handler;
