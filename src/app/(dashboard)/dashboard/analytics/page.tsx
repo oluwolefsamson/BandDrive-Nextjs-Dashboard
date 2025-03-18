@@ -1,12 +1,12 @@
 "use client";
 
-import { InvoiceStatusChart } from "@/components/charts/invoice-status-chart";
-import { MonthlyComparisonChart } from "@/components/charts/monthly-comparison-chart";
-import { RevenueChart } from "@/components/charts/revenue-chart";
-import { TopProjectsChart } from "@/components/charts/top-projects-chart";
-import { DateRangePicker } from "@/components/date-range-picker";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { MonthlyComparisonChart } from "@/components/charts/monthly-comparison-chart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { InvoiceStatusChart } from "@/components/charts/invoice-status-chart";
+import { TopProjectsChart } from "@/components/charts/top-projects-chart";
+import { RevenueChart } from "@/components/charts/revenue-chart";
+import { DateRangePicker } from "@/components/date-range-picker";
 import { useState } from "react";
 
 export default function Analytics() {
@@ -16,7 +16,7 @@ export default function Analytics() {
     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight">Analytics</h1>
-        <DateRangePicker date={dateRange} setDate={setDateRange} />
+        <DateRangePicker date={dateRange} />
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
