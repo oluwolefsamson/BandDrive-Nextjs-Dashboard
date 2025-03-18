@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -12,7 +12,7 @@ const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password");
+          return null;
         }
 
         const user = {
@@ -23,14 +23,14 @@ const authOptions: NextAuthOptions = {
         };
 
         if (credentials.email === user.email && credentials.password === user.password) {
-          return { id: user.id, name: user.name, email: user.email };
+          return { id: user.id, name: user.name, email: user.email }; // ✅ Removed password from the returned object
         }
 
-        throw new Error("Invalid credentials");
+        return null;
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET, // ✅ Ensure this is set in `.env.local`
   pages: {
     signIn: "/login",
   },
@@ -38,29 +38,29 @@ const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user = {
-          id: token.id as string,
+          id: token.id as string, // ✅ Now TypeScript recognizes `id`
           name: token.name as string,
           email: token.email as string,
-          image: token.picture as string | null,
+          image: token.image as string | null,
         };
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id = user.id; // ✅ Ensure `id` is stored in the JWT token
         token.name = user.name;
         token.email = user.email;
       }
       return token;
     },
   },
+
   session: {
     strategy: "jwt",
   },
 };
 
-// ✅ Use `export default` for App Router in Next.js 13+
+// ✅ Correct export syntax for Next.js App Router
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
-export default handler;
+export const { GET, POST } = handler; // ✅ Use this format for App Router
