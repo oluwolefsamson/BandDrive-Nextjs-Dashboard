@@ -15,14 +15,13 @@ The Mini Business Intelligence (BI) Tool is a responsive and user-friendly dashb
 ### ✅ Dashboard
 
 - **Metrics Summary**: Displays key business indicators such as:
-  - **Total Users**
-  - **Active Sessions**
-  - **Sales Revenue**
+  - **Users**
+  - **Analytics**
+  - **Overview Card**
 - **Charts (Data Visualization)**:
   - 📈 **Line Chart** → Sales trends
   - 📊 **Bar Chart** → User growth
   - 🥧 **Pie/Donut Chart** → Category distribution
-- **Data Table**: Sortable and filterable sample user/sales data.
 
 -**THEME**: TO CHANGE THE THEME, NAVIGATE TO THE SETTING SECTION AT THE SIDEBAR, CLICK GENERAL AT THE DROPDOWN, GO TO THE APPEARANCE CARD AND TOGGLE THE BUTTON TO CHANGE THEME
 
