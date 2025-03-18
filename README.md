@@ -46,15 +46,15 @@ The Mini Business Intelligence (BI) Tool is a responsive and user-friendly dashb
 
 ### **Deployment**
 
-- **Frontend Hosted on**: [Vercel](https://vercel.com/)
-- **Source Code Hosted on**: [GitHub](https://github.com/your-repo)
+- **Frontend Hosted on**: [Vercel](https://band-drive-nextjs-dashboard-sdmm.vercel.app/)
+- **Source Code Hosted on**: [GitHub](https://github.com/oluwolefsamson/BandDrive-Nextjs-Dashboard)
 
 ## 📌 Setup Instructions
 
 ### **1️⃣ Clone the Repository**
 
 ```sh
- git clone https://github.com/your-repo.git
+ git clone https://github.com/oluwolefsamson/BandDrive-Nextjs-Dashboard
  cd your-repo
 ```
 
@@ -85,24 +85,16 @@ NEXTAUTH_URL= http://localhost:3000
 
 1. **Users register/login** email : admin@email.com
    password : password123.
+
 2. **JWT-based authentication** ensures secure access.
 3. **Protected Routes** prevent unauthorized access to `/dashboard`.
 
-## 🎨 UI/UX Design
-
-- **Figma Design Link**: [Figma URL](https://figma.com/your-design-link)
-- **Dark Mode Support** (Optional feature)
-
 ## 🚀 Deployment
 
-This project is deployed on **Vercel**. Access the live version: [Live App](https://your-app.vercel.app/)
+This project is deployed on **Vercel**. Access the live version: [Live App](https://band-drive-nextjs-dashboard-sdmm.vercel.app/)
 
 ```sh
 git checkout -b feature-branch
 git commit -m "Add a new feature"
 git push origin feature-branch
 ```
-
----
-
-🎯 This project is built to showcase frontend development, UI/UX design, state management, and deployment expertise.
