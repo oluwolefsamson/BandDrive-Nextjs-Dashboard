@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          throw new Error("Missing email or password");
         }
 
         const user = {
@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
           return { id: user.id, name: user.name, email: user.email };
         }
 
-        return null;
+        throw new Error("Invalid credentials");
       },
     }),
   ],
@@ -38,9 +38,10 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user = {
+          id: token.id as string,
           name: token.name as string,
           email: token.email as string,
-          image: token.image as string | null,
+          image: token.picture as string | null,
         };
       }
       return session;
@@ -59,6 +60,6 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-// ✅ Fix: Use correct NextAuth API handling for App Router
+// ✅ Fix: Correct NextAuth API handling for App Router
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
